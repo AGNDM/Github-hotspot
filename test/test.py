@@ -7,7 +7,7 @@ import geopy
 import pandas as pd
 import plotly.express as px
 
-def standardize_country_name(country_name):
+def standardized_country_name(country_name):
     if country_name is None:
         return None
 
@@ -40,17 +40,29 @@ def get_github_data():
     # 使用个人访问令牌进行身份验证
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
-    # 搜索 Python 语言的仓库
-    repos = g.search_repositories(query='language:python', sort='stars', order='desc')
-    # 获取前100个仓库的主要开发者的名字和位置信息
-    developer_data = []
-    for repo in repos[:100]:
-        contributors = repo.get_contributors()
-        for contributor in contributors[:5]:
-            developer_data.append((contributor.login,standardize_country_name(contributor.location), contributor.email))
-            print(developer_data[-1], developer_data.__len__())
+    # 搜索所有语言的仓库
+    repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
+    # 获取前1000个仓库的主要开发者的名字和位置信息
+    for repo in repos[210:300]:
+        try:
+            contributors = repo.get_contributors()
+            for contributor in contributors[:5]:
+                developer_data = []
+                developer_data.append(contributor.login)
+                developer_data.append(standardized_country_name(contributor.location))
+                developer_data.append(contributor.email)
+                print(f"已获取{developer_data[0]}的相关信息")
+
+                #输入到数据库
+                test_mariadb_connection(developer_data)
+
+        
+        except Exception as e:
+            print(f"在处理仓库 {repo.full_name} 时发生错误: {e}")
+            #继续处理下一个仓库
+            continue
     
-    return developer_data
+    return 
 
 # 测试连接和查询
 def test_mariadb_connection(data):
@@ -58,59 +70,33 @@ def test_mariadb_connection(data):
         # 尝试连接到 MariaDB
         connection = mysql.connector.connect(**db_config)
         if connection.is_connected():
-            print("成功连接到 MariaDB!")
-            # 获取 MariaDB 服务器信息
-            db_info = connection.get_server_info()
-            print(f"MariaDB 服务器版本: {db_info}")
 
             #如果demo表不存在，创建新的表demo
             cursor = connection.cursor()
-
-            #demo( id int primary key, name varchar(50), region varchar(40), email varchar(50))
             cursor.execute("CREATE TABLE IF NOT EXISTS demo (id INT PRIMARY KEY, name VARCHAR(50), region VARCHAR(40), email VARCHAR(50));")
 
             #清空表
-            cursor.execute("TRUNCATE TABLE demo;")
+#            cursor.execute("TRUNCATE TABLE demo;")
 
-#            # 插入10条编造的随机数据
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (1, 'Alice', 'China');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (2, 'Bob', 'USA');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (3, 'Charlie', 'UK');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (4, 'David', 'Canada');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (5, 'Eva', 'China');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (6, 'Frank', 'USA');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (7, 'Grace', 'UK');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (8, 'Henry', 'Canada');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (9, 'Ivy', 'China');")
-#            cursor.execute("INSERT INTO demo (id, name, region) VALUES (10, 'Jack', 'USA');")
             #把data里面的数据插入到数据库
-            for i in range(data.__len__()):
-                cursor.execute(f"INSERT INTO demo (id, name, region, email) VALUES ({i+1}, '{data[i][0]}', '{data[i][1]}', '{data[i][2]}');")
+            try:
+                #获取目前数据库最大的主键
+                cursor.execute("SELECT MAX(id) FROM demo;")
+                curr_max_id = cursor.fetchone()[0]
+                if curr_max_id is None:
+                    curr_max_id = 0
+                primary_key = curr_max_id + 1
+                #插入数据
+                cursor.execute(f"INSERT INTO demo (id, name, region, email) VALUES ({primary_key}, '{data[0]}', '{data[1]}', '{data[2]}');")
+                print(f"成功插入数据: {data}")
 
+            except Exception as e:
+                print(f"在插入数据时发生错误: {e}")
+                return
+                
 
             #提交
             connection.commit()
-
-#            #查看demo表中的数据
-#            cursor.execute("SELECT * FROM demo;")
-#            records = cursor.fetchall()
-#            print("demo表中的数据:")
-#            for record in records:
-#                print(f"- {record}")
-#
-#            # 创建游标并执行查询
-#            cursor = connection.cursor()
-#            cursor.execute("SHOW TABLES;")
-#            tables = cursor.fetchall()
-#
-#            # 输出表信息
-#            if tables:
-#                print("数据库中的表:")
-#                for table in tables:
-#                    print(f"- {table}")
-#            else:
-#                print("数据库中没有表.")
-
 
     except Error as e:
         print(f"连接失败: {e}")
@@ -118,14 +104,13 @@ def test_mariadb_connection(data):
         # 关闭连接
         if 'connection' in locals() and connection.is_connected():
             connection.close()
-            print("连接已关闭.")
 
 #读取数据库中的数据并生成地区热力图
 def test_mariadb_data():
     try:
         connection = mysql.connector.connect(**db_config)
         if connection.is_connected():
-            print("成功连接到 MariaDB!")
+            print("成功连接到 MariaDB!开始进行热力图绘制")
             db_info = connection.get_server_info()
             print(f"MariaDB 服务器版本: {db_info}")
             cursor = connection.cursor()
@@ -134,7 +119,21 @@ def test_mariadb_data():
             # 生成地区热力图
             df = pd.DataFrame(records, columns=['region', 'count'])
             max_count = df['count'].max() / 2
-            fig = px.choropleth(df, locations=df['region'], locationmode='country names', color=df['count'], color_continuous_scale='Viridis', range_color=(0, max_count))
+            fig = px.choropleth(
+                df, 
+                locations=df['region'], 
+                locationmode='country names', 
+                color=df['count'], 
+                color_continuous_scale='Reds', 
+                range_color=(0, max_count/2),
+            )
+            fig.update_layout(
+                title_text='Top 300 Repositories Developers Heatmap',
+                title_x=0.5,
+                title_xanchor="center",
+                title_yanchor="top",
+                font=dict(size=20)
+            )
             fig.show()
     except Exception as e:
         print(f"在查询数据时发生错误: {e}")
@@ -142,5 +141,5 @@ def test_mariadb_data():
 # 执行测试
 if __name__ == "__main__":
 #    data = get_github_data()
-#    test_mariadb_connection(data)
     test_mariadb_data()
+    print("数据库插入完成")

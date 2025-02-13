@@ -1,7 +1,6 @@
 import mysql.connector
 import os
 import github
-from mysql.connector import Error
 import pycountry
 import geopy
 import pandas as pd

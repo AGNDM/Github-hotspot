@@ -146,22 +146,6 @@ def update2db_r(data):
         if 'connection' in locals() and connection.is_connected():
             connection.close()
 
-def select_data():
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
-    #cursor.execute("SELECT * FROM demo LIMIT 10;")
-    cursor.execute(f"SELECT * FROM {table_r_name};")
-    for row in cursor.fetchall():
-        print(row)
-    connection.close()
-
-def delete_data():
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
-    cursor.execute(f"TRUNCATE TABLE {table_r_name};")
-    connection.close()
-    print(f"{table_r_name} is deleted.")
-
 # 查询表函数
 def select_data():
     table_name = input("请输入要查询的表名：")

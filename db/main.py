@@ -87,8 +87,8 @@ def update2db_c(data):
         if 'connection' in locals() and connection.is_connected():
             connection.close()
 
-# 获取star数超过1000的responsibility的数据
-def get_contributor_data():
+# 获取star数超过1000的repository的数据
+def get_repository_data():
     # 使用个人访问令牌进行身份验证
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
@@ -111,7 +111,7 @@ def get_contributor_data():
     
     return 
 
-# 测试连接和将responsibility数据输入到数据库
+# 测试连接和将repository数据输入到数据库
 def update2db_r(data):
     try:
         # 尝试连接到 MariaDB
@@ -187,7 +187,7 @@ def delete_data():
 # 执行测试
 if __name__ == "__main__":
     get_contributor_data()
-    get_contributor_data()
+    get_repository_data()
     select_data()
     delete_data()
     print("数据库插入完成")

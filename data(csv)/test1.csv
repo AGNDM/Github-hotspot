@@ -1,0 +1,219 @@
+repository,stars,contributors,tag,forks,issues
+tensorflow/tensorflow,175000,3500,ML Framework,2900,8500
+facebook/react,203000,1800,Frontend Framework,400,7200
+vuejs/vue,198000,400,Frontend Framework,1500,650
+pytorch/pytorch,68000,2900,ML Framework,1200,4300
+django/django,71000,2400,Backend Framework,600,3600
+elasticsearch/elasticsearch,63000,1900,Database,1900,3000
+webpack/webpack,62000,800,Development Tool,1100,1800
+npm/npm,42000,300,Development Tool,700,900
+babel/babel,41000,1200,Development Tool,300,1500
+jquery/jquery,56000,900,Frontend Framework,200,2000
+bootstrap/bootstrap,161000,1200,Frontend Framework,800,5000
+expressjs/express,59000,280,Backend Framework,1000,700
+spring-projects/spring-boot,68000,900,Backend Framework,1800,2500
+laravel/laravel,71000,600,Backend Framework,2000,1800
+django-rest-framework/django-rest-framework,25000,1200,Backend Framework,700,1500
+fastapi/fastapi,54000,400,Backend Framework,460,800
+scikit-learn/scikit-learn,52000,2200,ML Framework,2400,3200
+keras-team/keras,55000,1100,ML Framework,1900,2100
+apache/spark,34000,2300,Big Data,1600,2700
+apache/kafka,24000,1100,Big Data,1200,1800
+apache/hadoop,12000,900,Big Data,8100,1500
+microsoft/TypeScript,88000,1700,Programming Language,1100,4000
+ruby/ruby,19000,2800,Programming Language,5600,3500
+JetBrains/kotlin,43000,600,Programming Language,530,1200
+apple/swift,63000,900,Programming Language,9700,3000
+scala/scala,13000,800,Programming Language,2000,1100
+prometheus/prometheus,45000,1200,Cloud Platform,7600,2500
+helm/helm,23000,900,Cloud Platform,7400,1800
+istio/istio,32000,1100,Cloud Platform,6200,2200
+openshift/origin,8000,400,Cloud Platform,4800,900
+ansible/ansible,55000,7800,DevOps Tool,23000,5000
+terraform-providers/terraform,35000,3400,DevOps Tool,4700,3000
+jenkins/jenkins,19000,900,DevOps Tool,8000,1500
+gradle/gradle,12000,500,Build Tool,3400,800
+apache/maven,3000,200,Build Tool,1200,500
+spring-projects/spring-framework,50000,800,Backend Framework,14000,2500
+nestjs/nest,58000,400,Backend Framework,1500,900
+pallets/flask,61000,700,Backend Framework,1500,1200
+rails/rails,51000,4200,Backend Framework,20000,4000
+apache/airflow,29000,2600,DevOps Tool,7800,2000
+kubernetes/minikube,25000,1200,Development Tool,4300,1500
+moby/moby,65000,2400,Cloud Platform,18000,3000
+torvalds/linux,146000,4200,Operating System,42000,8000
+microsoft/PowerToys,89000,800,Development Tool,2900,2000
+microsoft/terminal,85000,600,Development Tool,770,1500
+brave/brave-browser,14000,200,Application,1200,500
+signal-org/signal-android,22000,300,Application,5100,800
+mozilla/firefox,11000,1000,Application,2700,1200
+chrome/chromium,8000,4000,Application,2700,1500
+apache/dubbo,38000,900,Backend Framework,12000,2000
+spring-cloud/spring-cloud-netflix,12000,200,Cloud Platform,2700,800
+hashicorp/terraform,37000,3400,DevOps Tool,4700,3000
+apache/flink,21000,1600,Big Data,12000,2500
+elastic/kibana,18000,1700,Data Visualization,3000,2000
+grafana/grafana,52000,2100,Data Visualization,6800,3000
+pytorch/vision,14000,600,ML Framework,3900,1200
+tensorflow/models,74000,1200,ML Framework,22000,4000
+huggingface/transformers,108000,1800,ML Framework,23000,5000
+BVLC/caffe,32000,1200,ML Framework,8700,2000
+apache/mxnet,20000,900,ML Framework,6800,1500
+microsoft/CNTK,17000,600,ML Framework,4900,1200
+apache/cassandra,7800,400,Database,3200,900
+cockroachdb/cockroach,26000,600,Database,3300,1200
+vitessio/vitess,15000,400,Database,1800,800
+couchbase/manifest,5000,200,Database,600,300
+MariaDB/server,4500,300,Database,1300,500
+microsoft/sqlserver,8000,400,Database,2200,900
+oracle/mysql-server,6000,300,Database,1700,700
+postgrest/postgrest,19000,200,Backend Framework,900,500
+hasura/graphql-engine,29000,400,Backend Framework,2000,800
+apollographql/apollo-server,13000,300,Backend Framework,1500,600
+graphql/graphql-js,19000,400,Backend Framework,1200,700
+prisma/prisma,31000,500,Database,1100,900
+dbeaver/dbeaver,32000,200,Development Tool,2700,800
+microsoft/azure-sdk,5000,300,Cloud Platform,1200,500
+aws/aws-sdk-java,3500,200,Cloud Platform,1200,400
+google/google-cloud-java,3000,200,Cloud Platform,1200,300
+apache/zookeeper,10000,300,Cloud Platform,3000,700
+etcd-io/etcd,42000,800,Cloud Platform,8800,1500
+rabbitmq/rabbitmq-server,10000,300,Message Queue,3300,800
+apache/activemq,3000,200,Message Queue,1200,400
+apache/rocketmq,18000,400,Message Queue,4800,900
+apache/pulsar,12000,500,Message Queue,3200,700
+nsqio/nsq,22000,200,Message Queue,2800,600
+nats-io/nats-server,12000,300,Message Queue,900,500
+spring-projects/spring-security,7000,400,Security,2100,600
+auth0/auth0,3500,200,Security,600,300
+keycloak/keycloak,14000,600,Security,3000,800
+openssl/openssl,19000,800,Security,5300,1200
+hashicorp/vault,27000,1100,Security,4100,1500
+Kong/kong,33000,500,API Gateway,3800,900
+apache/apisix,11000,300,API Gateway,2300,600
+google/cadvisor,15000,400,Monitoring,2300,700
+prometheus/node_exporter,8000,300,Monitoring,2100,500
+elastic/beats,11000,600,Monitoring,1900,800
+influxdata/telegraf,12000,500,Monitoring,1800,700
+apache/skywalking,21000,400,Monitoring,5900,900
+flutter/flutter,154000,1200,Frontend Framework,24000,5000
+microsoft/vscode,148000,1600,Development Tool,26000,4000
+kubernetes/kubernetes,97000,3800,Cloud Platform,34000,8000
+angular/angular,89000,1500,Frontend Framework,24000,3000
+rust-lang/rust,84000,3200,Programming Language,11000,5000
+node/node,89000,3100,Backend Framework,24000,4000
+python/cpython,54000,2200,Programming Language,27000,3000
+golang/go,108000,2800,Programming Language,16000,5000
+docker/docker,65000,2400,Cloud Platform,18000,3000
+linux/linux,146000,4200,Operating System,42000,8000
+git/git,45000,2300,Development Tool,12000,2500
+redis/redis,58000,900,Database,22000,3000
+postgres/postgres,51000,800,Database,8000,2000
+mongodb/mongodb,24000,500,Database,4700,1500
+elasticsearch/elasticsearch,63000,1900,Database,1900,3000
+webpack/webpack,62000,800,Development Tool,1100,1800
+npm/npm,42000,300,Development Tool,700,900
+babel/babel,41000,1200,Development Tool,300,1500
+jquery/jquery,56000,900,Frontend Framework,200,2000
+bootstrap/bootstrap,161000,1200,Frontend Framework,800,5000
+expressjs/express,59000,280,Backend Framework,1000,700
+spring-projects/spring-boot,68000,900,Backend Framework,1800,2500
+laravel/laravel,71000,600,Backend Framework,2000,1800
+django-rest-framework/django-rest-framework,25000,1200,Backend Framework,700,1500
+fastapi/fastapi,54000,400,Backend Framework,460,800
+scikit-learn/scikit-learn,52000,2200,ML Framework,2400,3200
+keras-team/keras,55000,1100,ML Framework,1900,2100
+apache/spark,34000,2300,Big Data,1600,2700
+apache/kafka,24000,1100,Big Data,1200,1800
+apache/hadoop,12000,900,Big Data,8100,1500
+microsoft/TypeScript,88000,1700,Programming Language,1100,4000
+ruby/ruby,19000,2800,Programming Language,5600,3500
+JetBrains/kotlin,43000,600,Programming Language,530,1200
+apple/swift,63000,900,Programming Language,9700,3000
+scala/scala,13000,800,Programming Language,2000,1100
+prometheus/prometheus,45000,1200,Cloud Platform,7600,2500
+helm/helm,23000,900,Cloud Platform,7400,1800
+istio/istio,32000,1100,Cloud Platform,6200,2200
+openshift/origin,8000,400,Cloud Platform,4800,900
+ansible/ansible,55000,7800,DevOps Tool,23000,5000
+terraform-providers/terraform,35000,3400,DevOps Tool,4700,3000
+jenkins/jenkins,19000,900,DevOps Tool,8000,1500
+gradle/gradle,12000,500,Build Tool,3400,800
+apache/maven,3000,200,Build Tool,1200,500
+spring-projects/spring-framework,50000,800,Backend Framework,14000,2500
+nestjs/nest,58000,400,Backend Framework,1500,900
+pallets/flask,61000,700,Backend Framework,1500,1200
+rails/rails,51000,4200,Backend Framework,20000,4000
+apache/airflow,29000,2600,DevOps Tool,7800,2000
+kubernetes/minikube,25000,1200,Development Tool,4300,1500
+moby/moby,65000,2400,Cloud Platform,18000,3000
+torvalds/linux,146000,4200,Operating System,42000,8000
+microsoft/PowerToys,89000,800,Development Tool,2900,2000
+microsoft/terminal,85000,600,Development Tool,770,1500
+brave/brave-browser,14000,200,Application,1200,500
+signal-org/signal-android,22000,300,Application,5100,800
+mozilla/firefox,11000,1000,Application,2700,1200
+chrome/chromium,8000,4000,Application,2700,1500
+apache/dubbo,38000,900,Backend Framework,12000,2000
+spring-cloud/spring-cloud-netflix,12000,200,Cloud Platform,2700,800
+hashicorp/terraform,37000,3400,DevOps Tool,4700,3000
+apache/flink,21000,1600,Big Data,12000,2500
+elastic/kibana,18000,1700,Data Visualization,3000,2000
+grafana/grafana,52000,2100,Data Visualization,6800,3000
+pytorch/vision,14000,600,ML F:w
+uramework,3900,1200
+tensorflow/models,74000,1200,ML Framework,22000,4000
+huggingface/transformers,108000,1800,ML Framework,23000,5000
+BVLC/caffe,32000,1200,ML Framework,8700,2000
+apache/mxnet,20000,900,ML Framework,6800,1500
+microsoft/CNTK,17000,600,ML Framework,4900,1200
+apache/cassandra,7800,400,Database,3200,900
+cockroachdb/cockroach,26000,600,Database,3300,1200
+vitessio/vitess,15000,400,Database,1800,800
+couchbase/manifest,5000,200,Database,600,300
+MariaDB/server,4500,300,Database,1300,500
+microsoft/sqlserver,8000,400,Database,2200,900
+oracle/mysql-server,6000,300,Database,1700,700
+postgrest/postgrest,19000,200,Backend Framework,900,500
+hasura/graphql-engine,29000,400,Backend Framework,2000,800
+apollographql/apollo-server,13000,300,Backend Framework,1500,600
+graphql/graphql-js,19000,400,Backend Framework,1200,700
+prisma/prisma,31000,500,Database,1100,900
+dbeaver/dbeaver,32000,200,Development Tool,2700,800
+microsoft/azure-sdk,5000,300,Cloud Platform,1200,500
+aws/aws-sdk-java,3500,200,Cloud Platform,1200,400
+google/google-cloud-java,3000,200,Cloud Platform,1200,300
+apache/zookeeper,10000,300,Cloud Platform,3000,700
+etcd-io/etcd,42000,800,Cloud Platform,8800,1500
+rabbitmq/rabbitmq-server,10000,300,Message Queue,3300,800
+apache/activemq,3000,200,Message Queue,1200,400
+apache/rocketmq,18000,400,Message Queue,4800,900
+apache/pulsar,12000,500,Message Queue,3200,700
+nsqio/nsq,22000,200,Message Queue,2800,600
+nats-io/nats-server,12000,300,Message Queue,900,500
+spring-projects/spring-security,7000,400,Security,2100,600
+auth0/auth0,3500,200,Security,600,300
+keycloak/keycloak,14000,600,Security,3000,800
+openssl/openssl,19000,800,Security,5300,1200
+hashicorp/vault,27000,1100,Security,4100,1500
+Kong/kong,33000,500,API Gateway,3800,900
+apache/apisix,11000,300,API Gateway,2300,600
+google/cadvisor,15000,400,Monitoring,2300,700
+prometheus/node_exporter,8000,300,Monitoring,2100,500
+elastic/beats,11000,600,Monitoring,1900,800
+influxdata/telegraf,12000,500,Monitoring,1800,700
+apache/skywalking,21000,400,Monitoring,5900,900
+flutter/flutter,154000,1200,Frontend Framework,24000,5000
+microsoft/vscode,148000,1600,Development Tool,26000,4000
+kubernetes/kubernetes,97000,3800,Cloud Platform,34000,8000
+angular/angular,89000,1500,Frontend Framework,24000,3000
+rust-lang/rust,84000,3200,Programming Language,11000,5000
+node/node,89000,3100,Backend Framework,24000,4000
+python/cpython,54000,2200,Programming Language,27000,3000
+golang/go,108000,2800,Programming Language,16000,5000
+docker/docker,65000,2400,Cloud Platform,18000,3000
+linux/linux,146000,4200,Operating System,42000,8000
+git/git,45000,2300,Development Tool,12000,2500
+redis/redis,58000,900,Database,22000,3000
+postgres/postgres,51000,800,Database,8000,2000
+mongodb/mongodb,24000,500,Database,4700,1500

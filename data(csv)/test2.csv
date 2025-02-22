@@ -1,0 +1,30 @@
+repository,stars,contributors,tag,year
+tensorflow/tensorflow,175000,3500,ML Framework,2022
+facebook/react,203000,1800,Frontend Framework,2022
+vuejs/vue,198000,400,Frontend Framework,2022
+flutter/flutter,154000,1200,Frontend Framework,2022
+node/node,89000,3100,Backend Framework,2022
+python/cpython,54000,2200,Programming Language,2022
+linux/linux,146000,4200,Operating System,2022
+jquery/jquery,56000,900,Frontend Framework,2022
+newrepo/awesome,10000,600,Cool Project,2022
+
+tensorflow/tensorflow,175000,3500,ML Framework,2023
+django/django,71000,2400,Backend Framework,2023
+rust-lang/rust,84000,3200,Programming Language,2023
+docker/docker,65000,2400,Cloud Platform,2023
+redis/redis,58000,900,Database,2023
+mongodb/mongodb,24000,500,Database,2023
+webpack/webpack,62000,800,Development Tool,2023
+helio/newtool,5000,100,Development Tool,2023
+jquery/jquery,56000,900,Frontend Framework,2023
+
+facebook/react,203000,1800,Frontend Framework,2024
+vuejs/vue,198000,400,Frontend Framework,2024
+django/django,71000,2400,Backend Framework,2024
+kubernetes/kubernetes,97000,3800,Cloud Platform,2024
+node/node,89000,3100,Backend Framework,2024
+redis/redis,58000,900,Database,2024
+webpack/webpack,62000,800,Development Tool,2024
+python/cpython,54000,2200,Programming Language,2024
+docker/docker,65000,2400,Cloud Platform,2024

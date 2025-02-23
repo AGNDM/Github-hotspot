@@ -11,7 +11,7 @@ def create_figure():
     fig = px.scatter(df, 
                      x='stars', 
                      y='contributors',
-                     title='仓库热门程度和贡献者数量关系',
+                     title='Stars vs Contributors',
                      hover_data=['repository', 'stars', 'contributors','tag'],
 #                     trendline='ols',
                      template="simple_white",
@@ -21,10 +21,9 @@ def create_figure():
         title_x=0.5,
         title_xanchor="center",
         title_yanchor="top",
-        font=dict(size=15),
     )
 
-    fig.write_html("pic1_stars_contributors.html")
+    fig.write_html("htmlfigure/pic1_stars_contributors.html")
     fig.show()
 
 if __name__ == '__main__':

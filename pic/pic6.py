@@ -31,7 +31,7 @@ try:
  fig = px.bar(df, x='nationality', y='num', title='Nationality Distribution',
              labels={'num': 'Count'}, 
              barmode='group')
- fig.write_html("nationality_distribution_bar.html")
+ fig.write_html("htmlfigure/pic6_nationality_distribution_bar.html")
 finally:
 # 关闭数据库连接
  connection.close()

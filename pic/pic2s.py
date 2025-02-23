@@ -61,15 +61,15 @@ def create_figure():
 
     # 更新布局，将 updatemenus 设置到 figure 中
     fig.update_layout(
-        title="各年份Tag分布",
+        title="Topic Distribution",
         #位置处于pie图的正上方
         title_x=0.5,
         #设置主题
         template='simple_white',
-        updatemenus=updatemenus
+        updatemenus=updatemenus,
     )
 
-    fig.write_html('pic/pic2.html')
+    fig.write_html("htmlfigure/pic2_tag_distribution.html")
 
     fig.show()
 

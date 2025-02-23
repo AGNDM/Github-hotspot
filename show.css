@@ -23,3 +23,19 @@
 h1 {
   text-align: center;
 }
+
+.page-container {
+  padding: 20px 0;
+}
+
+.el-tabs__content {
+  background-color: #ffffff;
+}
+
+.chart-card {
+  margin-bottom: 30px;
+}
+
+.chart-card:last-child {
+  margin-bottom: 0;
+}

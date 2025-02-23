@@ -15,6 +15,11 @@ def create_figure():
         values='count',   # 每条记录记为 1 个计数
         title='各年份Tag分布'
     )
+    fig.update_layout(
+        title_x=0.5,
+        title_xanchor="center",
+        title_yanchor="top",
+    )
     fig.show()
 
 if __name__ == '__main__':

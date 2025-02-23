@@ -1,42 +1,21 @@
-import pymysql
+import random
+import string
 import pandas as pd
 import plotly.express as px
-# 数据库连接配置
-db_config = {
-'host': '192.168.0.15',
-'user': 'remote_user',
-'password': '88888888',
-'database': 'test',
-'port': 3306
-}
-# 连接到数据库
-connection = pymysql.connect(
-    host=db_config['host'],
-    user=db_config['user'],
-    password=db_config['password'],
-    database=db_config['database'],
-    port=db_config['port']
-)
+import numpy as np
+from datetime import datetime, timedelta
 
-try:
- # 执行SQL查询
- query = "SELECT * FROM demo"
- df = pd.read_sql_query(query, connection)
- # 将DataFrame转换为NumPy数组
- data_array = df.to_numpy()
+# 生成模拟问题数量随时间变化的数据
+date_rng = pd.date_range(start='1/1/2021', end='1/1/2023', freq='MS')  # 每月的第一天
+issue_data = []
+for date in date_rng:
+    # 随机生成0到20之间的问题数量
+    issue_count = random.randint(0, 20)
+    issue_data.append({'Month': date.strftime('%Y-%m'), 'Count': issue_count})
 
- columns = ['num', 'ID', 'nationality', 'email'] 
+# 将数据转换为DataFrame
+issue_counts = pd.DataFrame(issue_data)
 
- df = pd.DataFrame(data_array, columns=columns)
-
- df_counts = df['nationality'].value_counts().reset_index()
- df_counts.columns = ['nationality', 'count']
-
-# 创建饼图
- fig = px.pie(df_counts, names='nationality', hole=.3, title='Pie Chart of Nationality Distribution')
- fig.update_traces(textinfo='label+percent', marker=dict(line=dict(color='#000000', width=1)))
- fig.write_html("nationality_distribution_pie.html")
-
-finally:
-# 关闭数据库连接
- connection.close()
+# 使用 Plotly 绘制时间线
+fig = px.line(issue_counts, x='Month', y='Count', title='Number of Issues Over Time')
+fig.write_html("issue_by_time.html")

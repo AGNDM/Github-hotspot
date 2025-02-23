@@ -1,37 +1,16 @@
-import pymysql
 import pandas as pd
 import plotly.express as px
-# 数据库连接配置
-db_config = {
-'host': '192.168.0.15',
-'user': 'remote_user',
-'password': '88888888',
-'database': 'test',
-'port': 3306
-}
-# 连接到数据库
-connection = pymysql.connect(
-    host=db_config['host'],
-    user=db_config['user'],
-    password=db_config['password'],
-    database=db_config['database'],
-    port=db_config['port']
-)
 
-try:
- # 执行SQL查询
- query = "SELECT * FROM demo_r_20250213"
- df = pd.read_sql_query(query, connection)
- # 将DataFrame转换为NumPy数组
- data_array = df.to_numpy()
+# 假设数据已经加载到DataFrame df中
+df = pd.read_csv('data(csv)/test1.csv') 
+# 示例数据（实际使用中应替换为真实数据）
 
- columns = ['ID', 'name', 'star', 'language'] 
-
- df = pd.DataFrame(data_array, columns=columns)
-
- fig = px.scatter_3d(df, x='name', y='star', z='ID', title='3D Scatter Plot using ID as Z-axis') 
- fig.write_html("3dscatter.html")
-
-finally:
-# 关闭数据库连接
- connection.close()
+ 
+# 示例图表1：柱状图展示各仓库的Star数量
+fig1 = px.bar(df, x='repository', y='stars', title='Stars per Repository')
+fig1.write_html('stars_per_repository.html')
+ 
+# 示例图表2：散点图展示Star数量与Fork数量的关系
+fig2 = px.scatter(df, x='stars', y='forks', size='stars', color='tag', hover_name='repository', title='Stars vs Forks')
+fig2.update_traces(marker=dict(size=10, sizemode='area'))  # 调整气泡大小模式为面积
+fig2.write_html('stars_vs_forks.html')

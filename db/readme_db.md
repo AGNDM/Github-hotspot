@@ -6,7 +6,7 @@ update2db_r函数将获取到的仓库信息输入到数据库
 name VARCHAR(50),  
 star INT,  
 contributors INT, 
-topics TEXT, //text类型，格式为'["aaaaa", "bbbbb", "ccccc"]'如'["education", "books", "list", "resource", "hacktoberfest"]'  
+topics TEXT, //text类型，格式为'["aaaaa", "bbbbb", "ccccc"]'，如'["education", "books", "list", "resource", "hacktoberfest"]'  
 forks INT,  
 issues INT,  
 createdate VARCHAR(50)) //字符串类型，格式为'yyyy-mm-dd'，如'2013-10-11'

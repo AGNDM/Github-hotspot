@@ -4,6 +4,7 @@ import github
 from mysql.connector import Error
 import cname
 import datetime
+import json
 
 # 配置 MariaDB 连接信息
 db_config = {
@@ -16,7 +17,8 @@ db_config = {
 
 today_date = datetime.datetime.now().strftime("%Y%m%d")
 table_c_name = f"demo_c_{today_date}"
-table_r_name = f"demo_r_{today_date}"
+#table_r_name = f"demo_r_{today_date}"
+table_r_name = f"demo_r"
 
 # 获取star数前1000的仓库中前5个contributor的数据
 def get_contributor_data():
@@ -87,6 +89,7 @@ def update2db_c(data):
         if 'connection' in locals() and connection.is_connected():
             connection.close()
 
+'''
 # 获取star数超过1000的repository的数据
 def get_repository_data():
     # 使用个人访问令牌进行身份验证
@@ -145,6 +148,7 @@ def update2db_r(data):
         # 关闭连接
         if 'connection' in locals() and connection.is_connected():
             connection.close()
+'''
 
 # 查询表函数
 def select_data():
@@ -184,9 +188,72 @@ def delete_data():
         if connection.is_connected():
             connection.close()
 
+# 获取star数超过1000的repository的数据
+def get_repository_data():
+    # 使用个人访问令牌进行身份验证
+    token = os.getenv('GITHUB_TOKEN')
+    g = github.Github(token)
+    repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
+    for repo in repos[:3]:
+        try:
+            developer_data = []
+            developer_data.append(repo.name)
+            developer_data.append(repo.stargazers_count)
+            developer_data.append(repo.get_contributors().totalCount)
+            developer_data.append(json.dumps(repo.get_topics()))
+            developer_data.append(repo.forks_count)
+            developer_data.append(repo.get_issues(state='all').totalCount)
+            developer_data.append(repo.created_at.strftime('%Y-%m-%d'))
+            print(f"已获取{developer_data[0]}的相关信息")
+
+            #输入到数据库
+            update2db_r(developer_data)
+        
+        except Exception as e:
+            print(f"在处理仓库 {repo.full_name} 时发生错误: {e}")
+            #继续处理下一个仓库
+            continue
+    
+    return 
+
+# 测试连接和将repository数据输入到数据库
+def update2db_r(data):
+    try:
+        # 尝试连接到 MariaDB
+        connection = mysql.connector.connect(**db_config)
+        if connection.is_connected():
+            #如果demo表不存在，创建新的表demo
+            cursor = connection.cursor()
+            cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_r_name} (id INT PRIMARY KEY, name VARCHAR(50), star INT, contributors INT, topics TEXT, forks INT, issues INT, createdate VARCHAR(50));")
+            #把data里面的数据插入到数据库
+            try:
+                #获取目前数据库最大的主键
+                cursor.execute(f"SELECT MAX(id) FROM {table_r_name};")
+                curr_max_id = cursor.fetchone()[0]
+                if curr_max_id is None:
+                    curr_max_id = 0
+                primary_key = curr_max_id + 1
+                #插入数据
+                cursor.execute(f"INSERT INTO {table_r_name} (id, name, star, contributors, topics, forks, issues, createdate) VALUES ({primary_key}, '{data[0]}', '{data[1]}', '{data[2]}', '{data[3]}', '{data[4]}', '{data[5]}', '{data[6]}');")
+                print(f"成功插入数据: {data}")
+
+            except Exception as e:
+                print(f"在插入数据时发生错误: {e}")
+                return   
+
+            #提交
+            connection.commit()
+
+    except Error as e:
+        print(f"连接失败: {e}")
+    finally:
+        # 关闭连接
+        if 'connection' in locals() and connection.is_connected():
+            connection.close()
+
 # 执行测试
 if __name__ == "__main__":
-    get_contributor_data()
+#    get_contributor_data()
     get_repository_data()
     select_data()
     delete_data()

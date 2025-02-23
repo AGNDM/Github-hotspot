@@ -23,6 +23,8 @@ def create_figure():
         title_yanchor="top",
         font=dict(size=15),
     )
+
+    fig.write_html("pic1_stars_contributors.html")
     fig.show()
 
 if __name__ == '__main__':

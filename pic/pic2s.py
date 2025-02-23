@@ -69,6 +69,8 @@ def create_figure():
         updatemenus=updatemenus
     )
 
+    fig.write_html('pic/pic2.html')
+
     fig.show()
 
 if __name__ == "__main__":

@@ -16,8 +16,10 @@ db_config = {
 }
 
 today_date = datetime.datetime.now().strftime("%Y%m%d")
-table_c_name = f"demo_c_{today_date}"
-table_r_name = f"demo_r_{today_date}"
+#table_c_name = f"demo_c_{today_date}"
+table_c_name=f"con"
+#table_r_name = f"demo_r_{today_date}"
+table_r_name = f"repo"
 
 # 获取star数前1000的仓库中前5个contributor的数据
 def get_contributor_data():
@@ -25,7 +27,7 @@ def get_contributor_data():
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
     repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
-    for repo in repos[:1000]:
+    for repo in repos[:2]:
         try:
             contributors = repo.get_contributors()
             for contributor in contributors[:5]:
@@ -33,6 +35,7 @@ def get_contributor_data():
                 developer_data.append(contributor.login)
                 developer_data.append(cname.standardized_country_name(contributor.location))
                 developer_data.append(contributor.email)
+                developer_data.append(repo.name)
                 print(f"已获取{developer_data[0]}的相关信息")
 
                 #输入到数据库
@@ -70,13 +73,21 @@ def update2db_c(data):
                     primary_key = curr_max_id + 1
                     #插入数据
                     cursor.execute(f"INSERT INTO {table_c_name} (id, name, region, email) VALUES ({primary_key}, '{data[0]}', '{data[1]}', '{data[2]}');")
-                    print(f"成功插入数据: {data}")
+                    print(f"成功插入数据{data}到表{table_c_name}")
 
                 except Exception as e:
-                    print(f"在插入数据时发生错误: {e}")
+                    print(f"在插入数据到表{table_c_name}时发生错误: {e}")
                     return
             else:
-                print(f"数据已存在，跳过: {data}")    
+                print(f"数据已存在，跳过: {data}")
+
+            cursor.execute(f"CREATE TABLE IF NOT EXISTS repository_contributors (repo_name VARCHAR(50),con_name VARCHAR(50),PRIMARY KEY (repo_name, con_name));")
+            try:
+                cursor.execute(f"INSERT INTO repository_contributors (repo_name, con_name) VALUES ('{data[0]}', '{data[3]}');")
+                print(f"成功插入数据{data}到表repository_contributors")
+            except Exception as e:
+                    print(f"在插入数据到表repository_contributors时发生错误: {e}")
+                    return    
 
             #提交
             connection.commit()
@@ -193,7 +204,7 @@ def get_repository_data():
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
     repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
-    for repo in repos[:100]:
+    for repo in repos[100:1000]:
         try:
             developer_data = []
             developer_data.append(repo.name)

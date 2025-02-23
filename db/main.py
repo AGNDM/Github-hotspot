@@ -17,8 +17,7 @@ db_config = {
 
 today_date = datetime.datetime.now().strftime("%Y%m%d")
 table_c_name = f"demo_c_{today_date}"
-#table_r_name = f"demo_r_{today_date}"
-table_r_name = f"demo_r"
+table_r_name = f"demo_r_{today_date}"
 
 # 获取star数前1000的仓库中前5个contributor的数据
 def get_contributor_data():
@@ -194,7 +193,7 @@ def get_repository_data():
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
     repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
-    for repo in repos[:3]:
+    for repo in repos[:100]:
         try:
             developer_data = []
             developer_data.append(repo.name)

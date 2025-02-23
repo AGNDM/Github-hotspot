@@ -27,7 +27,7 @@ def get_contributor_data():
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
     repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
-    for repo in repos[:2]:
+    for repo in repos[:1000]:
         try:
             contributors = repo.get_contributors()
             for contributor in contributors[:5]:
@@ -204,7 +204,7 @@ def get_repository_data():
     token = os.getenv('GITHUB_TOKEN')
     g = github.Github(token)
     repos = g.search_repositories(query='stars:>1000', sort='stars', order='desc')
-    for repo in repos[100:1000]:
+    for repo in repos[:1000]:
         try:
             developer_data = []
             developer_data.append(repo.name)
@@ -263,8 +263,8 @@ def update2db_r(data):
 
 # 执行测试
 if __name__ == "__main__":
-#    get_contributor_data()
-    get_repository_data()
+    get_contributor_data()
+#    get_repository_data()
     select_data()
     delete_data()
     print("数据库插入完成")

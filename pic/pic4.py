@@ -20,4 +20,5 @@ fig.update_layout(
     hovermode='x unified'
 )
 
+fig.write_html("pic4_stars_over_time.html")
 fig.show()

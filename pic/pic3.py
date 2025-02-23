@@ -82,5 +82,6 @@ fig.update_yaxes(title_text="Contributors", row=1, col=2)
 fig.update_yaxes(title_text="Issues", row=2, col=2)
 fig.update_yaxes(title_text="Issues", row=3, col=2)
 
+fig.write_html('pic/pic3.html')
 # 显示图表
 fig.show()

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GitHub Data Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f7fa;
+      }
+      .dashboard-container {
+        padding: 20px;
+      }
+      .el-header {
+        background: #304156;
+        color: white;
+        line-height: 60px;
+      }
+      .chart-card {
+        margin-bottom: 20px;
+        transition: all 0.3s;
+      }
+      .chart-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .chart-frame {
+        width: 100%;
+        height: 600px;
+        border: none;
+      }
+      .el-tabs__content {
+        padding: 20px 0;
+      }
+      .page-container {
+        min-height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <el-container>
+        <el-header>
+          <h2>GitHub Data Visualization Dashboard</h2>
+        </el-header>
+
+        <el-main class="dashboard-container">
+          <el-tabs v-model="activePage" type="border-card">
+            <!-- Overview Page -->
+            <el-tab-pane label="Overview" name="overview">
+              <div class="page-container">
+                <el-row :gutter="20">
+                  <el-col :span="12">
+                    <el-card class="chart-card">
+                      <template #header>
+                        <div class="card-header">
+                          <span>Stars vs Contributors</span>
+                        </div>
+                      </template>
+                      <iframe
+                        class="chart-frame"
+                        src="htmlfigure/pic1_stars_contributors.html"
+                      ></iframe>
+                    </el-card>
+                  </el-col>
+                  <el-col :span="12">
+                    <el-card class="chart-card">
+                      <template #header>
+                        <div class="card-header">
+                          <span>Tag Distribution</span>
+                        </div>
+                      </template>
+                      <iframe
+                        class="chart-frame"
+                        src="htmlfigure/pic2_tag_distribution.html"
+                      ></iframe>
+                    </el-card>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-tab-pane>
+
+            <!-- Trends Page -->
+            <el-tab-pane label="Trends Analysis" name="trends">
+              <div class="page-container">
+                <el-row :gutter="20">
+                  <el-col :span="24">
+                    <el-card class="chart-card">
+                      <template #header>
+                        <div class="card-header">
+                          <span>3D Visualization</span>
+                        </div>
+                      </template>
+                      <iframe
+                        class="chart-frame"
+                        src="htmlfigure/pic3_3d.html"
+                      ></iframe>
+                    </el-card>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                  <el-col :span="24">
+                    <el-card class="chart-card">
+                      <template #header>
+                        <div class="card-header">
+                          <span>Stars Over Time</span>
+                        </div>
+                      </template>
+                      <iframe
+                        class="chart-frame"
+                        src="htmlfigure/pic4_stars_over_time.html"
+                      ></iframe>
+                    </el-card>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-tab-pane>
+
+            <!-- Geography Page -->
+            <el-tab-pane label="Geographic Distribution" name="geography">
+              <div class="page-container">
+                <el-row :gutter="20">
+                  <el-col :span="24">
+                    <el-card class="chart-card">
+                      <template #header>
+                        <div class="card-header">
+                          <span>Developers Heatmap</span>
+                        </div>
+                      </template>
+                      <iframe
+                        class="chart-frame"
+                        src="htmlfigure/pic8_developers_heatmap.html"
+                      ></iframe>
+                    </el-card>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
+        </el-main>
+      </el-container>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            activePage: "overview",
+          };
+        },
+      });
+      app.use(ElementPlus);
+      app.mount("#app");
+    </script>
+  </body>
+</html>

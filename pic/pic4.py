@@ -17,8 +17,9 @@ fig = px.line(df_filtered, x='date', y='stars',
 fig.update_layout(
     xaxis_title="Date",
     yaxis_title="Number of Stars",
-    hovermode='x unified'
+    hovermode='x unified',
+    title_x=0.5
 )
 
-fig.write_html("pic4_stars_over_time.html")
+fig.write_html("htmlfigure/pic4_stars_over_time.html")
 fig.show()

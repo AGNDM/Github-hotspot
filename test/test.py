@@ -113,7 +113,7 @@ def test_mariadb_data():
             db_info = connection.get_server_info()
             print(f"MariaDB 服务器版本: {db_info}")
             cursor = connection.cursor()
-            cursor.execute("SELECT region, COUNT(*) AS count FROM demo GROUP BY region;")
+            cursor.execute("SELECT region, COUNT(*) AS count FROM con GROUP BY region;")
             records = cursor.fetchall()
             # 生成地区热力图
             df = pd.DataFrame(records, columns=['region', 'count'])
@@ -127,13 +127,12 @@ def test_mariadb_data():
                 range_color=(0, max_count/2),
             )
             fig.update_layout(
-                title_text='Top 300 Repositories Developers Heatmap',
+                title_text='Top Repositories Developers Heatmap',
                 title_x=0.5,
                 title_xanchor="center",
                 title_yanchor="top",
-                font=dict(size=20)
             )
-            fig.show()
+            fig.write_html("htmlfigure/pic8_developers_heatmap.html")
     except Exception as e:
         print(f"在查询数据时发生错误: {e}")
 

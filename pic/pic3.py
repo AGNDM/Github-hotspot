@@ -64,6 +64,7 @@ fig.add_trace(scatter_contrib_issues.data[1], row=3, col=2)  # 添加趋势线
 # 更新布局
 fig.update_layout(
     title='GitHub Repository Metrics Analysis',
+    title_x=0.5,
     scene = dict(
         xaxis_title='Stars',
         yaxis_title='Contributors',
@@ -82,6 +83,6 @@ fig.update_yaxes(title_text="Contributors", row=1, col=2)
 fig.update_yaxes(title_text="Issues", row=2, col=2)
 fig.update_yaxes(title_text="Issues", row=3, col=2)
 
-fig.write_html('pic/pic3.html')
+fig.write_html("htmlfigure/pic3_3d.html")
 # 显示图表
 fig.show()

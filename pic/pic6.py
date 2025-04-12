@@ -1,37 +1,16 @@
-import pymysql
 import pandas as pd
 import plotly.express as px
-# 数据库连接配置
-db_config = {
-'host': '192.168.0.15',
-'user': 'remote_user',
-'password': '88888888',
-'database': 'test',
-'port': 3306
-}
-# 连接到数据库
-connection = pymysql.connect(
-    host=db_config['host'],
-    user=db_config['user'],
-    password=db_config['password'],
-    database=db_config['database'],
-    port=db_config['port']
-)
-
-try:
- # 执行SQL查询
- query = "SELECT * FROM demo"
- df = pd.read_sql_query(query, connection)
- # 将DataFrame转换为NumPy数组
- data_array = df.to_numpy()
-
- columns = ['num', 'ID', 'nationality', 'email'] 
-
- df = pd.DataFrame(data_array, columns=columns)
- fig = px.bar(df, x='nationality', y='num', title='Nationality Distribution',
-             labels={'num': 'Count'}, 
-             barmode='group')
- fig.write_html("nationality_distribution_bar.html")
-finally:
-# 关闭数据库连接
- connection.close()
+import numpy as np
+import datetime
+ 
+ 
+# 代码行数变化数据（时间序列）
+dates = pd.date_range(start='2023-01-01', periods=10, freq='M')  # 假设10个月的数据
+code_lines = np.random.randint(1000, 2000, size=len(dates))  # 随机生成的代码行数
+code_changes = pd.DataFrame({'Date': dates, 'Code Lines': code_lines})
+ 
+ 
+# 可视化部分
+# 时间序列图，显示代码行数随时间的变化
+fig_code_lines = px.line(code_changes, x='Date', y='Code Lines', title='Code Lines Over Time')
+fig_code_lines.write_html("code_lines_over_time.html")

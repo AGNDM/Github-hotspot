@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import {
     ChartPieIcon,
     StarIcon,
@@ -9,14 +10,12 @@ import {
     OfficeBuildingIcon,
     //ExclamationCircleIcon,
     HomeIcon,
-    MoonIcon,
-    SunIcon,
     ViewGridIcon
 } from '@heroicons/react/outline';
-import { useTheme } from '../../contexts/ThemeContext';
 
 const Sidebar = ({ isOpen, activePage, setActivePage }) => {
-    const { theme, toggleTheme } = useTheme();
+    const navListRef = useRef(null);
+    const mouseY = useMotionValue(Infinity);
 
     const navItems = [
         { id: 'dashboard', label: '概览', icon: <HomeIcon className="w-5 h-5" /> },
@@ -37,7 +36,7 @@ const Sidebar = ({ isOpen, activePage, setActivePage }) => {
 
     return (
         <motion.aside
-            className="sidebar"
+            className={`sidebar`}
             variants={sidebarVariants}
             animate={isOpen ? 'open' : 'closed'}
             initial={isOpen ? 'open' : 'closed'}
@@ -48,7 +47,17 @@ const Sidebar = ({ isOpen, activePage, setActivePage }) => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <ul>
+                    <motion.ul
+                        ref={navListRef}
+                        style={{
+                            y: mouseY,
+                            transition: useSpring(mouseY, {
+                                stiffness: 100,
+                                damping: 30,
+                                mass: 0.5
+                            })
+                        }}
+                    >
                         {navItems.map((item) => (
                             <li key={item.id}>
                                 <button
@@ -61,26 +70,8 @@ const Sidebar = ({ isOpen, activePage, setActivePage }) => {
                                 </button>
                             </li>
                         ))}
-                    </ul>
+                    </motion.ul>
                 </nav>
-
-                <div className="sidebar-footer">
-                    <button
-                        className="theme-toggle-btn"
-                        onClick={toggleTheme}
-                        title={theme === 'dark' ? '切换到亮色模式' : '切换到暗色模式'}
-                    >
-                        {theme === 'dark'
-                            ? <SunIcon className="w-5 h-5" />
-                            : <MoonIcon className="w-5 h-5" />
-                        }
-                        {isOpen && (
-                            <span className="theme-label">
-                                {theme === 'dark' ? '亮色模式' : '暗色模式'}
-                            </span>
-                        )}
-                    </button>
-                </div>
             </div>
         </motion.aside>
     );

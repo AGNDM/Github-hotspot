@@ -2129,7 +2129,7 @@ table tbody tr:hover {
     /* 使用网格布局 */
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     /* 自适应列宽 */
-    gap: 15px;
+    gap: 10px;
     /* 卡片之间的间距 */
 }
 

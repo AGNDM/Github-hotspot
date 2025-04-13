@@ -513,7 +513,7 @@ async function getTopRepositories() {
                 url
             FROM ${repoTable}
             ORDER BY stars DESC
-            LIMIT 500
+            LIMIT 1500
         `;
 
         const [rows] = await pool.query(query);

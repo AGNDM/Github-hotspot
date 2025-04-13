@@ -575,20 +575,20 @@ const StarsContributorsIssuesRelation = () => {
                                                 <span>0</span>
                                                 <span>10k</span>
                                                 <span>20k</span>
-                                                <span>30k</span>
-                                                <span>40k</span>
-                                                <span>50k+</span>
+                                                <span>35k</span>
+                                                <span>105k</span>
+                                                <span>400k+</span>
                                             </div>
                                             <div className="axis-label">星标数</div>
                                         </div>
                                         <div className="scatter-plot-axis y-axis">
                                             <div className="axis-label">问题数</div>
                                             <div className="axis-ticks">
-                                                <span>5k+</span>
-                                                <span>4k</span>
-                                                <span>3k</span>
-                                                <span>2k</span>
-                                                <span>1k</span>
+                                                <span>500+</span>
+                                                <span>400</span>
+                                                <span>300</span>
+                                                <span>200</span>
+                                                <span>100</span>
                                                 <span>0</span>
                                             </div>
                                         </div>

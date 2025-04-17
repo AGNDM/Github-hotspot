@@ -1,6 +1,6 @@
 # Github 热门仓库可视化系统
 
-这个项目提供了一个可视化界面，用于展示从Github爬取的热门仓库数据统计信息。
+这个项目提供了一个可视化界面，用于展示从 Github 爬取的热门仓库数据统计信息。
 
 ## 项目结构
 
@@ -19,9 +19,9 @@ github-viz-app/
 └── index.html           # 包含所有可视化的单页HTML文件
 ```
 
-## 后端API服务器
+## 后端 API 服务器
 
-后端API服务连接数据库，提供以下数据API：
+后端 API 服务连接数据库，提供以下数据 API：
 
 - `/api/language-distribution`: 编程语言分布统计
 - `/api/company-distribution`: 公司分布统计
@@ -33,21 +33,24 @@ github-viz-app/
 
 ## 使用方法
 
-### 部署方式1: 完整React应用
+### 部署方式 1: 完整 React 应用
 
 1. 安装依赖
+
 ```
 cd github-viz-app
 npm install
 ```
 
-2. 启动后端API服务
+2. 启动后端 API 服务
+
 ```
 cd github-viz-app
 ./start-api.sh
 ```
 
 3. 启动前端开发服务器
+
 ```
 cd github-viz-app
 npm start
@@ -55,13 +58,13 @@ npm start
 
 4. 打开浏览器访问: http://localhost:3000
 
-### 部署方式2: 单HTML文件
+### 部署方式 2: 单 HTML 文件
 
 无需运行服务器，可以直接打开`index.html`文件在浏览器中查看静态可视化内容。
 
 ## 数据来源
 
-数据来自`db/main.py`爬取的Github数据，包括:
+数据来自`db/main.py`爬取的 Github 数据，包括:
 
 - `repo_YYYYMMDD`: 仓库基本信息(星标、贡献者数、问题数等)
 - `repo_activity_YYYYMMDD`: 仓库活跃度数据
@@ -73,12 +76,15 @@ npm start
 
 ```javascript
 const dbConfig = {
-    host: '192.168.0.15',
-    user: 'remote_user',
-    password: '88888888',
-    database: 'test',
-    port: 3306
+  host: "192.168.0.15",
+  user: "remote_user",
+  password: "88888888",
+  database: "test",
+  port: 3306,
 };
 ```
 
-如需修改，请更新上述配置信息。 
+如需修改，请更新上述配置信息。
+
+npm 使用 echarts 库
+npm install echarts echarts-for-react
